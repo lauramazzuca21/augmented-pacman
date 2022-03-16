@@ -167,6 +167,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: labirinth-t-neon
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 41aaa12eea5ace9499d59009935de1e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 7133629850546776208, guid: 41aaa12eea5ace9499d59009935de1e6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
