@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: 79459efec17a4d00a321bdcc27bbc385
 timeCreated: 1484172856
+<<<<<<< HEAD
+licenseType: Store
+=======
 licenseType: Pro
+>>>>>>> 8e1d060fa5a1286fb708041e7e09c60b54ffa95e
 NativeFormatImporter:
   userData: 
   assetBundleName: 
