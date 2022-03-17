@@ -27,7 +27,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -0.0458, y: -0.0009, z: -0.0014}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5934533769939430912}
   m_RootOrder: 4
@@ -72,7 +71,6 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0003, y: 0.031177646, z: -0.0014}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5934533769939430912}
   m_RootOrder: 3
@@ -161,6 +159,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: labirinth-long-t-neon
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e3b83b3ca48ca54a911da67c8342c5a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 4286368197808029948, guid: 4e3b83b3ca48ca54a911da67c8342c5a,
         type: 3}

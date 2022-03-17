@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Point
   - PowerUp
+  - Wall
   layers:
   - Default
   - TransparentFX
