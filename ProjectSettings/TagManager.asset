@@ -10,6 +10,7 @@ TagManager:
   - PowerUp
   - Wall
   - Floor
+  - RandomPoint
   layers:
   - Default
   - TransparentFX
