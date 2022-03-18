@@ -136,8 +136,8 @@ GameObject:
   - component: {fileID: 256793830}
   - component: {fileID: 256793829}
   m_Layer: 0
-  m_Name: Destination
-  m_TagString: Untagged
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256793828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -61.56, y: 0, z: -5.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -407,6 +407,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: candy shop
       objectReference: {fileID: 0}
+    - target: {fileID: 1289082859757472508, guid: 3f1f2339772c04b4c816b5bbf620b5b1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 2862292508601579759, guid: 3f1f2339772c04b4c816b5bbf620b5b1,
         type: 3}
       propertyPath: m_RootOrder
@@ -430,12 +435,12 @@ PrefabInstance:
     - target: {fileID: 2862292508601579759, guid: 3f1f2339772c04b4c816b5bbf620b5b1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.91
+      value: -16.71
       objectReference: {fileID: 0}
     - target: {fileID: 2862292508601579759, guid: 3f1f2339772c04b4c816b5bbf620b5b1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 2862292508601579759, guid: 3f1f2339772c04b4c816b5bbf620b5b1,
         type: 3}
@@ -504,7 +509,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 1631143030}
-  destination: {fileID: 256793828}
+  player: {fileID: 256793828}
+  isTimeToArrest: 0
+  minDistToArrest: 15
+  isTravelStart: 0
+  rayDistance: 100
+  randomDestination: {x: 0, y: 0, z: 0}
+  randomPoints: []
+--- !u!135 &1631143029
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631143026}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &1631143030
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -573,6 +597,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 485019517553061068, guid: 742c7fee15dc11a46976adaa1ae00d5b,
+        type: 3}
+      propertyPath: m_TagString
+      value: RandomPoint
       objectReference: {fileID: 0}
     - target: {fileID: 523307253307910985, guid: 742c7fee15dc11a46976adaa1ae00d5b,
         type: 3}
@@ -929,6 +958,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 3638611818411415076, guid: 742c7fee15dc11a46976adaa1ae00d5b,
+        type: 3}
+      propertyPath: m_TagString
+      value: RandomPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 3884489425019242750, guid: 742c7fee15dc11a46976adaa1ae00d5b,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1209,6 +1243,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7917683091004656603, guid: 742c7fee15dc11a46976adaa1ae00d5b,
+        type: 3}
+      propertyPath: m_TagString
+      value: RandomPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 7987616531513152105, guid: 742c7fee15dc11a46976adaa1ae00d5b,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1218,6 +1257,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8143698028653980060, guid: 742c7fee15dc11a46976adaa1ae00d5b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8157551874815516935, guid: 742c7fee15dc11a46976adaa1ae00d5b,
         type: 3}
