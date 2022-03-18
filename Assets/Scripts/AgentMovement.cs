@@ -67,6 +67,7 @@ public class AgentMovement : MonoBehaviour
             }
 
             navMeshAgent.destination = randomDestination;
+
         }
     }
 
@@ -80,9 +81,9 @@ public class AgentMovement : MonoBehaviour
 
         int dim = randomPoints.Length - 1;
         int rand = Random.Range(0, dim);
-        Debug.Log("Index " + rand);
+     
         randomDestination = randomPoints[rand].transform.position;
-        Debug.Log("Sono a: " + transform.position + " Sto andando a: " + randomPoints[rand].transform.position + " indx: " + rand);
+        //Debug.Log("Sono a: " + transform.position + " Sto andando a: " + randomPoints[rand].transform.position + " indx: " + rand);
     }
 
     private bool CheckDIstance(Vector3 point1, Vector3 point2)
