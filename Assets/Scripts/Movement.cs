@@ -19,12 +19,6 @@ public class Movement : MonoBehaviour
         
     }
 
-    //FixedUpdate gets called before Update
-    void FixedUpdate()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {

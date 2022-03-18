@@ -28,7 +28,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.912001, y: -2.666372, z: 3.7644372}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 400010}
   m_RootOrder: 4
@@ -111,7 +110,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.910505, y: -2.6663764, z: 3.7644773}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 400010}
   m_RootOrder: 3
@@ -194,7 +192,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.9120047, y: -2.6662474, z: -4.8035593}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 400010}
   m_RootOrder: 2
@@ -277,7 +274,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.91065, y: -2.6662521, z: -4.80352}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 400010}
   m_RootOrder: 1
@@ -360,7 +356,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5533226188758685240}
   m_Father: {fileID: 400010}
@@ -425,9 +420,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400010}
+  - component: {fileID: 577203807}
   m_Layer: 0
   m_Name: Police Car v2 3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -441,8 +437,7 @@ Transform:
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.20000003, y: 0.19999997, z: 0.2}
   m_Children:
   - {fileID: 400008}
   - {fileID: 400006}
@@ -452,6 +447,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &577203807
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.015894, y: 7.3406134, z: 16.26836}
+  m_Center: {x: -0.0040963287, y: -0.5106741, z: -0.6731918}
 --- !u!1 &2537403638971185173
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,9 +486,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2537403638971185173}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.3, z: -7.9}
+  m_LocalPosition: {x: 0, y: -2.65, z: -7.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 400008}
   m_RootOrder: 0
@@ -1119,8 +1126,8 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 7.0883734e-13, y: 0, z: 0.00000012636187}
-    m_Rotation: {x: -0, y: 0.0004926267, z: 0}
+    m_Position: {x: 9.640642e-13, y: 0, z: 0.00000012874605}
+    m_Rotation: {x: 9.118253, y: 0.0004989702, z: -0.0000010094616}
     m_Scale: {x: 1, y: 0.116901495, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -1200,7 +1207,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.2673775
       mode: 0
       spread: 0
       speed:
@@ -5235,7 +5242,6 @@ ParticleSystemRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
-  m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.3
@@ -5259,8 +5265,4 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
-  m_MeshWeighting: 1
-  m_MeshWeighting1: 1
-  m_MeshWeighting2: 1
-  m_MeshWeighting3: 1
   m_MaskInteraction: 0

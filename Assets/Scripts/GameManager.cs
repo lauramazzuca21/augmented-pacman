@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,8 +14,6 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
-    
-
     public GameState gameState { get; private set; }
 
     private static GameManager _instance;
@@ -30,13 +29,10 @@ public class GameManager : MonoBehaviour
 
             return _instance;
         }
-
-
-       
     }
 
     //ref to UI
-    public GameObject scorePoints;
+    public UnityEngine.UI.Text scorePoints;
     public GameObject[] livesImgs;
 
     //ref to PlayerStats
@@ -65,7 +61,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        EventManager.Points += ReceivePoints;
+    }
+
+    private void ReceivePoints(int pts)
+    {
+        score += pts;
+        scorePoints.text = score.ToString();
     }
 
     // Update is called once per frame
