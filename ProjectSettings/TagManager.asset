@@ -9,6 +9,7 @@ TagManager:
   - Point
   - PowerUp
   - Wall
+  - Floor
   - RandomPoint
   layers:
   - Default
