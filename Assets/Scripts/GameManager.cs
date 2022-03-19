@@ -39,19 +39,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int score = 0; 
     [SerializeField] private int lives = 3;
 
+    //ref to interactions
+    public bool modSharkCarActive = false;
+
     public bool x = false;
-
-    public void SetGameState(GameState state)
-    {
-        this.gameState = state;
-        //OnStateChange();
-    }
-
-    public void OnApplicationQuit()
-    {
-        GameManager._instance = null;
-    }
-
 
     private void Awake()
     {
@@ -64,16 +55,10 @@ public class GameManager : MonoBehaviour
         EventManager.Points += ReceivePoints;
     }
 
-    private void ReceivePoints(int pts)
-    {
-        score += pts;
-        scorePoints.text = score.ToString();
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if(lives == 0)
+        if (lives == 0)
         {
             Debug.Log("hai perso!");
             //menu di restart e funzione restart
@@ -85,7 +70,36 @@ public class GameManager : MonoBehaviour
             x = false;
             ArrestedPlayer();
         }
+
+        if (modSharkCarActive)
+        {
+            StartCoroutine(ResetSharkMod());
+        }
     }
+    IEnumerator ResetSharkMod()
+    {
+        yield return new WaitForSeconds(15f);
+        modSharkCarActive = false;
+    }
+
+    public void SetGameState(GameState state)
+    {
+        this.gameState = state;
+        //OnStateChange();
+    }
+
+    public void OnApplicationQuit()
+    {
+        GameManager._instance = null;
+    }
+
+    private void ReceivePoints(int pts)
+    {
+        score += pts;
+        scorePoints.text = score.ToString();
+    }
+
+
 
     //GAMEPLAY FUNCTION
     public void ArrestedPlayer()
