@@ -416,7 +416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1880848476866063775
 Transform:
   m_ObjectHideFlags: 0
@@ -1663,7 +1663,7 @@ GameObject:
   - component: {fileID: 2096793432}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1729,8 +1729,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.58668965, y: 0.80092424, z: 1.1505312}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.3867865, y: 1.9408863, z: 2.478639}
+  m_Center: {x: 0.016601324, y: 0.005533217, z: 0.4316347}
 --- !u!114 &2096793432
 MonoBehaviour:
   m_ObjectHideFlags: 0
