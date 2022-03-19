@@ -130,6 +130,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4290834741905557159}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &301993354 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6899545095737740188, guid: 74948f4bbcd844b4fb4575728f78cbf1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4290834741905557159}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,16 +255,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 708428834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 712f632204b7343b880944452cf1368f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d52b81f3552e814690c4dcb6c7c9cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scorePoints: {fileID: 1707971049}
+  scorePoints: {fileID: 1707971051}
+  msgEndGame: {fileID: 796759947}
   livesImgs:
   - {fileID: 129086172}
   - {fileID: 1952192318}
   - {fileID: 2075479183}
+  panelEndGame: {fileID: 870681588}
+  panelGame: {fileID: 301993354}
   score: 0
   lives: 3
+  modSharkCarActive: 0
   x: 0
 --- !u!4 &708428836
 Transform:
@@ -274,6 +284,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &796759947 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7921323992288225522, guid: 74948f4bbcd844b4fb4575728f78cbf1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4290834741905557159}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &870681588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1386066108425927777, guid: 74948f4bbcd844b4fb4575728f78cbf1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4290834741905557159}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &929631639
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1141,12 +1169,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1707971049 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3933607304408627604, guid: 74948f4bbcd844b4fb4575728f78cbf1,
+--- !u!114 &1707971051 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6251955644342119989, guid: 74948f4bbcd844b4fb4575728f78cbf1,
     type: 3}
   m_PrefabInstance: {fileID: 4290834741905557159}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1952192318 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7832560182898826631, guid: 74948f4bbcd844b4fb4575728f78cbf1,
@@ -1341,6 +1375,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621214055514565218, guid: 74948f4bbcd844b4fb4575728f78cbf1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621214055514565218, guid: 74948f4bbcd844b4fb4575728f78cbf1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621214055514565218, guid: 74948f4bbcd844b4fb4575728f78cbf1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 708428835}
+    - target: {fileID: 4621214055514565218, guid: 74948f4bbcd844b4fb4575728f78cbf1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621214055514565218, guid: 74948f4bbcd844b4fb4575728f78cbf1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621214055514565218, guid: 74948f4bbcd844b4fb4575728f78cbf1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621214055514565218, guid: 74948f4bbcd844b4fb4575728f78cbf1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959683934531511697, guid: 74948f4bbcd844b4fb4575728f78cbf1,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 600
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74948f4bbcd844b4fb4575728f78cbf1, type: 3}

@@ -2,6 +2,7 @@ using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -24,8 +25,12 @@ public class GameManager : MonoBehaviour
     }
 
     //ref to UI
-    public UnityEngine.UI.Text scorePoints;
+    //public UnityEngine.UI.Text scorePoints;
+    public TMP_Text scorePoints;
+    public TMP_Text msgEndGame;
     public GameObject[] livesImgs;
+    public GameObject panelEndGame;
+    public GameObject panelGame;
 
     //ref to PlayerStats
     [SerializeField] private int score = 0; 
@@ -43,7 +48,10 @@ public class GameManager : MonoBehaviour
     {
         GameManager._instance = null;
     }
+    //ref to interactions
+    public bool modSharkCarActive = false;
 
+    public bool x = false;
 
     private void Awake()
     {
@@ -66,10 +74,22 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(lives == 0)
+        if (lives == 0)
         {
             Debug.Log("hai perso!");
-            //menu di restart e funzione restart
+            lives--;
+
+            ShowPanelEndGame("Sei stato arrestato");
+
+        }
+
+        if (score == 100)
+        {
+            Debug.Log("hai vinto!");
+            lives--;
+
+            ShowPanelEndGame("Sei scampato alla cattura");
+
         }
 
         //test
@@ -78,13 +98,69 @@ public class GameManager : MonoBehaviour
             x = false;
             ArrestedPlayer();
         }
+
+        if (modSharkCarActive)
+        {
+            StartCoroutine(ResetSharkMod());
+        }
     }
+    IEnumerator ResetSharkMod()
+    {
+        yield return new WaitForSeconds(15f);
+        modSharkCarActive = false;
+    }
+
+    public void SetGameState(GameState state)
+    {
+        this.gameState = state;
+        //OnStateChange();
+    }
+
+    public void OnApplicationQuit()
+    {
+        GameManager._instance = null;
+    }
+
+    private void ReceivePoints(int pts)
+    {
+        score += pts;
+        scorePoints.text = score.ToString();
+    }
+
+
 
     //GAMEPLAY FUNCTION
     public void ArrestedPlayer()
     {
         lives--;
         livesImgs[lives].SetActive(false);
+    }
+
+    private void ShowPanelEndGame(string msg)
+    {
+        msgEndGame.text = msg;
+
+        panelGame.SetActive(false);
+        panelEndGame.SetActive(true);        
+    }
+
+    public void RestartGame()
+    {
+        //player stats
+        lives = 3;
+        score = 0;
+
+        //UI
+        scorePoints.text = "0";
+        msgEndGame.text = "";
+        foreach (GameObject img in livesImgs) { img.SetActive(true); }
+
+        //panels
+        panelGame.SetActive(true);
+        panelEndGame.SetActive(false);
+
+        //ref to status
+        modSharkCarActive = false;
     }
 }
 

@@ -5,6 +5,10 @@ using UnityEngine.AI;
 
 public class AgentMovement : MonoBehaviour
 {
+    //ref to GM
+    public GameObject gameManager;
+    public GameManager gameManagerScript;
+
     //ref to momevent
     public NavMeshAgent navMeshAgent;
 
@@ -19,9 +23,15 @@ public class AgentMovement : MonoBehaviour
     [SerializeField] Vector3 randomDestination;
     [SerializeField] GameObject[] randomPoints;
 
+    //ref to CheckDistance function
+    [SerializeField] float checkDistance = 0.5f;
+    [SerializeField] float distanceFromShark = 25f;
+    [SerializeField] float recalculateDistance = 5f; //dovrebbe cercare un altro percorso, non ottimale ma va bhe
+
     // Start is called before the first frame update
     void Start()
     {
+        gameManagerScript = gameManager.GetComponent<GameManager>();
         randomPoints = GameObject.FindGameObjectsWithTag("RandomPoint");
     }
 
@@ -43,32 +53,48 @@ public class AgentMovement : MonoBehaviour
             isTimeToArrest = false;
         }
 
-        if (isTimeToArrest)
+        if (isTimeToArrest && !gameManagerScript.modSharkCarActive)
         {
+            //devo arrestare il player
             navMeshAgent.destination = player.transform.position;
+        }
+        else if (!isTimeToArrest && !gameManagerScript.modSharkCarActive)
+        {
+            //scelgo una destinazione random
+            Move();
+
+        }
+        else if (gameManagerScript.modSharkCarActive)
+        {
+            //RUN FORREST!
+
+            EscapeFromShark();
+
+            if(CheckDIstance(transform.position, player.transform.position, recalculateDistance))
+            {
+                CheckPickPosition();
+            }
+        }
+    }
+
+    private void Move()
+    {
+        if (!isTravelStart)
+        {
+            //se non sono ancora in viaggio calcolo la nuova destinazione
+            isTravelStart = true;
+            PickRandomPoint();
         }
         else
         {
-            //scelgo una destinazione random
-            
-            if (!isTravelStart)
+            //controllo se non sono arrivato
+            if (CheckDIstance(transform.position, randomDestination, checkDistance))
             {
-                //se non sono ancora in viaggio calcolo la nuova destinazione
-                isTravelStart = true;
-                PickRandomPoint();
+                isTravelStart = false;
             }
-            else
-            {
-                //controllo se non sono arrivato
-                if (CheckDIstance(transform.position, randomDestination))
-                {
-                    isTravelStart = false;
-                }
-            }
-
-            navMeshAgent.destination = randomDestination;
-
         }
+
+        navMeshAgent.destination = randomDestination;
     }
 
     private void PickRandomPoint()
@@ -86,9 +112,9 @@ public class AgentMovement : MonoBehaviour
         //Debug.Log("Sono a: " + transform.position + " Sto andando a: " + randomPoints[rand].transform.position + " indx: " + rand);
     }
 
-    private bool CheckDIstance(Vector3 point1, Vector3 point2)
+    private bool CheckDIstance(Vector3 point1, Vector3 point2, float maxRange)
     {
-        float range = 0.5f;
+        float range = maxRange;
 
         float dist = Vector3.Distance(point1, point2);
         //Debug.Log("la distanza è: " + dist);
@@ -100,6 +126,23 @@ public class AgentMovement : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    private void EscapeFromShark()
+    {
+        //if shark mode is active, RUN!
+        Move();
+
+        CheckPickPosition();
+    }
+
+    private void CheckPickPosition()
+    {
+        while (CheckDIstance(randomDestination, player.transform.position, distanceFromShark))
+        {
+            //pick a position far away
+            PickRandomPoint();
         }
     }
 
