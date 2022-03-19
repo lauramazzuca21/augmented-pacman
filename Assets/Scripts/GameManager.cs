@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] livesImgs;
     public GameObject panelEndGame;
     public GameObject panelGame;
+    public GameObject player;
 
     //ref to PlayerStats
     [SerializeField] private int score = 0; 
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviour
 
         //EVENTS
         EventManager.Points += ReceivePoints;
+        EventManager.PowerUp += HandlePowerup;
     }
 
     private void ReceivePoints(GameObject obj, int pts)
@@ -97,6 +99,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("Rimangono " + moneyLeft + " banconote");
 
         Destroy(obj);
+    }
+
+    private void HandlePowerup(PowerUp powerUp)
+    {
+        modSharkCarActive = true;
+        
+        player.GetComponent<Movement>().ActivatePowerup();
     }
 
     // Update is called once per frame

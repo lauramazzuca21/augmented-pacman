@@ -9,20 +9,37 @@ public class Movement : MonoBehaviour
     private Joystick joystick;
     [SerializeField]
     private float speed = 10.0f;
+    [SerializeField]
+    private GameObject car;
+    [SerializeField]
+    private GameObject pimpedcar;
+    [SerializeField]
+    private ParticleSystem puff;
 
+    private bool powerupActive = false;
 
     private Direction _previousDirection = Direction.RIGHT;
     private Direction _currentDirection = Direction.RIGHT;
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         Move();
+    }
+
+    public void ActivatePowerup()
+    {
+        puff.Play();
+        car.SetActive(false);
+        pimpedcar.SetActive(true);
+        powerupActive = true;
     }
 
     private void Move()
@@ -45,7 +62,7 @@ public class Movement : MonoBehaviour
         {
             float angle;
             Constants.RotationVector.TryGetValue(new KeyValuePair<Direction, Direction>(_previousDirection, _currentDirection), out angle);
-            transform.Rotate(0.0f, angle, 0.0f );
+            transform.Rotate(0.0f, 0.0f, angle);
         }
 
         Vector3 newPos;
@@ -53,8 +70,7 @@ public class Movement : MonoBehaviour
             newPos = new Vector3(0.0f, 0.0f, joystick.Vertical * speed * Time.deltaTime);
         else
             newPos = new Vector3(joystick.Horizontal * speed * Time.deltaTime, 0.0f, 0.0f);
-
         transform.position = transform.position + newPos;
-        //Debug.Log(transform.position.z);
+
     }
 }
