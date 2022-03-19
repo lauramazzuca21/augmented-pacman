@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int lives = 3;
 
     public bool x = false;
+    public bool modSharkCarActive = false;
 
     public void SetGameState(GameState state)
     {
@@ -49,9 +50,6 @@ public class GameManager : MonoBehaviour
         GameManager._instance = null;
     }
     //ref to interactions
-    public bool modSharkCarActive = false;
-
-    public bool x = false;
 
     private void Awake()
     {
@@ -109,25 +107,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(15f);
         modSharkCarActive = false;
     }
-
-    public void SetGameState(GameState state)
-    {
-        this.gameState = state;
-        //OnStateChange();
-    }
-
-    public void OnApplicationQuit()
-    {
-        GameManager._instance = null;
-    }
-
-    private void ReceivePoints(int pts)
-    {
-        score += pts;
-        scorePoints.text = score.ToString();
-    }
-
-
 
     //GAMEPLAY FUNCTION
     public void ArrestedPlayer()
