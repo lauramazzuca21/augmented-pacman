@@ -36,8 +36,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int score = 0; 
     [SerializeField] private int lives = 3;
 
+    //ref to game
     public bool x = false;
     public bool modSharkCarActive = false;
+    [SerializeField] GameObject[] moneyLeftObj;
+    [SerializeField] int moneyLeft;
 
     public void SetGameState(GameState state)
     {
@@ -59,6 +62,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        moneyLeftObj = GameObject.FindGameObjectsWithTag("Point");
+        moneyLeft = moneyLeftObj.Length;
+        Debug.Log("Rimangono " + moneyLeft + " banconote");
+
         EventManager.Points += ReceivePoints;
     }
 
@@ -66,6 +73,10 @@ public class GameManager : MonoBehaviour
     {
         score += pts;
         scorePoints.text = score.ToString();
+
+        moneyLeft = moneyLeftObj.Length;
+        Debug.Log("Rimangono " + moneyLeft + " banconote");
+
         Destroy(obj);
     }
 
@@ -81,11 +92,10 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (score == 100)
+        if (moneyLeft == 0)
         {
             Debug.Log("hai vinto!");
-            lives--;
-
+            
             ShowPanelEndGame("Sei scampato alla cattura");
 
         }
