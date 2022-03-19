@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // Game States
@@ -32,8 +33,12 @@ public class GameManager : MonoBehaviour
     }
 
     //ref to UI
-    public UnityEngine.UI.Text scorePoints;
+    //public UnityEngine.UI.Text scorePoints;
+    public TMP_Text scorePoints;
+    public TMP_Text msgEndGame;
     public GameObject[] livesImgs;
+    public GameObject panelEndGame;
+    public GameObject panelGame;
 
     //ref to PlayerStats
     [SerializeField] private int score = 0; 
@@ -61,7 +66,19 @@ public class GameManager : MonoBehaviour
         if (lives == 0)
         {
             Debug.Log("hai perso!");
-            //menu di restart e funzione restart
+            lives--;
+
+            ShowPanelEndGame("Sei stato arrestato");
+
+        }
+
+        if (score == 100)
+        {
+            Debug.Log("hai vinto!");
+            lives--;
+
+            ShowPanelEndGame("Sei scampato alla cattura");
+
         }
 
         //test
@@ -106,6 +123,33 @@ public class GameManager : MonoBehaviour
     {
         lives--;
         livesImgs[lives].SetActive(false);
+    }
+
+    private void ShowPanelEndGame(string msg)
+    {
+        msgEndGame.text = msg;
+
+        panelGame.SetActive(false);
+        panelEndGame.SetActive(true);        
+    }
+
+    public void RestartGame()
+    {
+        //player stats
+        lives = 3;
+        score = 0;
+
+        //UI
+        scorePoints.text = "0";
+        msgEndGame.text = "";
+        foreach (GameObject img in livesImgs) { img.SetActive(true); }
+
+        //panels
+        panelGame.SetActive(true);
+        panelEndGame.SetActive(false);
+
+        //ref to status
+        modSharkCarActive = false;
     }
 }
 
