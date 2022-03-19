@@ -258,13 +258,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scorePoints: {fileID: 0}
   msgEndGame: {fileID: 0}
-  livesImgs: []
+  livesImgs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   panelEndGame: {fileID: 0}
   panelGame: {fileID: 0}
+  player: {fileID: 0}
   score: 0
   lives: 3
   x: 0
   modSharkCarActive: 0
+  moneyLeftObj: []
+  moneyLeft: 0
+  playerCar: {fileID: 0}
+  playerCarInitialPos: {x: 0, y: 0, z: 0}
+  policeCar1: {fileID: 0}
+  policeCar1InitialPos: {x: 0, y: 0, z: 0}
+  policeCar2: {fileID: 0}
+  policeCar2InitialPos: {x: 0, y: 0, z: 0}
+  policeCar3: {fileID: 0}
+  policeCar3InitialPos: {x: 0, y: 0, z: 0}
+  policeCar4: {fileID: 0}
+  policeCar4InitialPos: {x: 0, y: 0, z: 0}
 --- !u!114 &618304702903229868
 MonoBehaviour:
   m_ObjectHideFlags: 0

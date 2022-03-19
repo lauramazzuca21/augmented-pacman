@@ -44,7 +44,7 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
-        if (Mathf.Abs(joystick.Horizontal) == .0f && Mathf.Abs(joystick.Vertical) == .0f)
+        if (Mathf.Abs(joystick.Horizontal) < .2f && Mathf.Abs(joystick.Vertical) < .2f)
             return;
 
         _previousDirection = _currentDirection;

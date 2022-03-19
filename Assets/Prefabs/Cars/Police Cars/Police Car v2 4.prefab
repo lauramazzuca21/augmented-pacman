@@ -4979,6 +4979,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2987518529292836872}
+  - component: {fileID: 1790606949}
+  - component: {fileID: 1790606948}
+  - component: {fileID: 1790606947}
   m_Layer: 0
   m_Name: Police Car v2 4
   m_TagString: Enemy
@@ -4995,7 +4998,7 @@ Transform:
   m_GameObject: {fileID: 2987518529292614696}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 13.31, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.10000011, y: 0.1, z: 0.10000008}
   m_Children:
   - {fileID: 2987518529292836874}
   - {fileID: 2987518529292836876}
@@ -5005,6 +5008,66 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!195 &1790606949
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2987518529292614696}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1790606948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2987518529292614696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45f5dc820e9c624487435116e74e407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  gameManagerScript: {fileID: 0}
+  navMeshAgent: {fileID: 1790606949}
+  player: {fileID: 0}
+  isTimeToArrest: 0
+  minDistToArrest: 15
+  isTravelStart: 0
+  rayDistance: 200
+  randomDestination: {x: 0, y: 0, z: 0}
+  randomPoints: []
+  checkDistance: 0.5
+  distanceFromShark: 25
+  recalculateDistance: 5
+--- !u!65 &1790606947
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2987518529292614696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.015894, y: 7.3406134, z: 16.26836}
+  m_Center: {x: -0.0040963287, y: -0.5106741, z: -0.6731918}
 --- !u!1 &2987518529292614698
 GameObject:
   m_ObjectHideFlags: 0
@@ -5033,7 +5096,8 @@ Transform:
   m_LocalRotation: {x: 0.0000018099951, y: -0.0000036517765, z: 6.6097587e-12, w: 1}
   m_LocalPosition: {x: 0.00068125105, y: 0.0009522978, z: 0.00078903395}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1145461438}
   m_Father: {fileID: 2987518529292836872}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

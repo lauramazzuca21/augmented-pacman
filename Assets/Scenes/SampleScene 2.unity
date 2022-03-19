@@ -1715,8 +1715,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 280656599}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-=======
 --- !u!1001 &2020814859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1871,7 +1869,6 @@ GameObject:
   m_PrefabInstance: {fileID: 7315610952656931563}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1106569177444261217
->>>>>>> d082632639070a7bbf4857a8195abf857c614f9d
 --- !u!1 &2029650289 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 232998180875289939, guid: 62a2ce943814c8d41a0e9b636edba4ce,
