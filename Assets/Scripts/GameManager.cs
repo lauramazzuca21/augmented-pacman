@@ -1,20 +1,12 @@
+using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Game States
-public enum GameState
-{
-    MAIN_MENU,
-    MAP1,
-    MAP2,
-    MAP3
-}
-
 public class GameManager : MonoBehaviour
 {
-    public GameState gameState { get; private set; }
+    public GameState GameState { get; private set; }
 
     private static GameManager _instance;
 
@@ -43,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     public void SetGameState(GameState state)
     {
-        this.gameState = state;
+        GameState = state;
         //OnStateChange();
     }
 
@@ -64,10 +56,11 @@ public class GameManager : MonoBehaviour
         EventManager.Points += ReceivePoints;
     }
 
-    private void ReceivePoints(int pts)
+    private void ReceivePoints(GameObject money, int pts)
     {
         score += pts;
         scorePoints.text = score.ToString();
+        Destroy(money);
     }
 
     // Update is called once per frame

@@ -7,12 +7,12 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    public delegate void ReceivePoints(int pts);
+    public delegate void ReceivePoints(GameObject money, int pts);
     public static event ReceivePoints Points;
 
-    internal static void FirePointsEvent(int pts)
+    internal static void FirePointsEvent(GameObject money, int pts)
     {
-        Points?.Invoke(pts);
+        Points?.Invoke(money, pts);
     }
 
 }

@@ -8,6 +8,17 @@ namespace Assets.Scripts
 {
     public static class Constants {
 
+        public static string T_MONEY = "Point";
+        public static string T_CREDITCARD = "PowerUp";
+        public static string T_ENEMY = "Enemy";
+
+        public static Dictionary<string, int> Points = new Dictionary<string, int>
+        {
+            {T_MONEY, 100 },
+            {T_CREDITCARD, 500 },
+            {T_ENEMY, 800 }
+        };
+
         public static Dictionary<KeyValuePair<Direction, Direction>, float> RotationVector = new Dictionary<KeyValuePair<Direction, Direction>, float>
         {
             { new KeyValuePair<Direction, Direction>(Direction.RIGHT, Direction.UP), -90.0f },

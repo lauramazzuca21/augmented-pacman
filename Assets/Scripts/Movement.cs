@@ -6,9 +6,9 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField]
-    private Joystick _joystick;
+    private Joystick joystick;
     [SerializeField]
-    private float _speed = 10.0f;
+    private float speed = 10.0f;
 
 
     private Direction _previousDirection = Direction.RIGHT;
@@ -20,40 +20,41 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Move();
     }
 
     private void Move()
     {
-        if (Mathf.Abs(_joystick.Horizontal) == .0f && Mathf.Abs(_joystick.Vertical) == .0f)
+        if (Mathf.Abs(joystick.Horizontal) == .0f && Mathf.Abs(joystick.Vertical) == .0f)
             return;
 
         _previousDirection = _currentDirection;
         ////If we're moving the joystick more horizontally
-        if (Mathf.Abs(_joystick.Horizontal) > Mathf.Abs(_joystick.Vertical))
+        if (Mathf.Abs(joystick.Horizontal) > Mathf.Abs(joystick.Vertical))
         {
-            _currentDirection = _joystick.Horizontal > 0.0f ? Direction.RIGHT : Direction.LEFT;
+            _currentDirection = joystick.Horizontal > 0.0f ? Direction.RIGHT : Direction.LEFT;
         }
         else
         {
-            _currentDirection = _joystick.Vertical > 0.0f ? Direction.UP : Direction.DOWN;
+            _currentDirection = joystick.Vertical > 0.0f ? Direction.UP : Direction.DOWN;
         }
 
         if (_previousDirection != _currentDirection)
         {
             float angle;
             Constants.RotationVector.TryGetValue(new KeyValuePair<Direction, Direction>(_previousDirection, _currentDirection), out angle);
-            transform.Rotate(0.0f, angle, 0.0f);
+            transform.Rotate(0.0f, angle, 0.0f );
         }
 
         Vector3 newPos;
         if (_currentDirection == Direction.DOWN || _currentDirection == Direction.UP)
-            newPos = new Vector3(0.0f, _joystick.Vertical * _speed * Time.deltaTime, 0.0f);
+            newPos = new Vector3(0.0f, 0.0f, joystick.Vertical * speed * Time.deltaTime);
         else
-            newPos = new Vector3(_joystick.Horizontal * _speed * Time.deltaTime, 0.0f, 0.0f);
+            newPos = new Vector3(joystick.Horizontal * speed * Time.deltaTime, 0.0f, 0.0f);
 
         transform.position = transform.position + newPos;
+        //Debug.Log(transform.position.z);
     }
 }
