@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,6 +43,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] moneyLeftObj;
     [SerializeField] int moneyLeft;
 
+    //ref to objs
+    public GameObject playerCar;
+    [SerializeField] Vector3 playerCarInitialPos;
+    public GameObject policeCar1;
+    [SerializeField] Vector3 policeCar1InitialPos;
+    public GameObject policeCar2;
+    [SerializeField] Vector3 policeCar2InitialPos;
+    public GameObject policeCar3;
+    [SerializeField] Vector3 policeCar3InitialPos;
+    public GameObject policeCar4;
+    [SerializeField] Vector3 policeCar4InitialPos;
+
     public void SetGameState(GameState state)
     {
         GameState = state;
@@ -66,6 +79,12 @@ public class GameManager : MonoBehaviour
         moneyLeft = moneyLeftObj.Length;
         Debug.Log("Rimangono " + moneyLeft + " banconote");
 
+        playerCarInitialPos = playerCar.transform.position;
+        policeCar1InitialPos = policeCar1.transform.position;
+        policeCar1InitialPos = policeCar1.transform.position;
+        policeCar1InitialPos = policeCar1.transform.position;
+
+        //EVENTS
         EventManager.Points += ReceivePoints;
     }
 
@@ -74,7 +93,7 @@ public class GameManager : MonoBehaviour
         score += pts;
         scorePoints.text = score.ToString();
 
-        moneyLeft = moneyLeftObj.Length;
+        moneyLeft--;
         Debug.Log("Rimangono " + moneyLeft + " banconote");
 
         Destroy(obj);
