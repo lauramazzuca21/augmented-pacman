@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    public delegate void ReceivePoints(GameObject money, int pts);
+    public delegate void ReceivePoints(GameObject obj, int pts);
     public static event ReceivePoints Points;
 
-    internal static void FirePointsEvent(GameObject money, int pts)
+    public delegate void ReceivePowerUp(Assets.Scripts.PowerUp powerUp);
+    public static event ReceivePowerUp PowerUp;
+
+    internal static void FirePointsEvent(GameObject obj, int pts)
     {
-        Points?.Invoke(money, pts);
+        Points?.Invoke(obj, pts);
+    }
+
+    internal static void FirePowerUpEvent(Assets.Scripts.PowerUp powerUp)
+    {
+        PowerUp?.Invoke(powerUp);
     }
 
 }

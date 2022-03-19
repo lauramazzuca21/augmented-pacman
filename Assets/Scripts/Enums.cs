@@ -9,4 +9,9 @@
         MAP2,
         MAP3
     }
+
+    public enum PowerUp
+    {
+        PIMP
+    }
 }
