@@ -62,11 +62,11 @@ public class GameManager : MonoBehaviour
         EventManager.Points += ReceivePoints;
     }
 
-    private void ReceivePoints(GameObject money, int pts)
+    private void ReceivePoints(GameObject obj, int pts)
     {
         score += pts;
         scorePoints.text = score.ToString();
-        Destroy(money);
+        Destroy(obj);
     }
 
     // Update is called once per frame
