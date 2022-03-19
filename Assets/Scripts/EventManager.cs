@@ -2,8 +2,14 @@
 
 public class EventManager : MonoBehaviour
 {
-    public delegate void ReceivePoints(GameObject obj, int pts);
+    public delegate void ReceivePoints(GameObject money, int pts);//definisce la funzione che voglio (interfaccia funzione evento)
     public static event ReceivePoints Points;
+
+    public delegate void ReceiveSound(string objTag);
+    public static event ReceiveSound Sound;
+
+    public delegate void ManageArrestedPlayer();
+    public static event ManageArrestedPlayer ArrestedPlayer;
 
     public delegate void ReceivePowerUp(Assets.Scripts.PowerUp powerUp);
     public static event ReceivePowerUp PowerUp;
@@ -16,6 +22,16 @@ public class EventManager : MonoBehaviour
     internal static void FirePowerUpEvent(Assets.Scripts.PowerUp powerUp)
     {
         PowerUp?.Invoke(powerUp);
+    } 
+    
+    internal static void FireSoundEvent(string objTag)
+    {
+        Sound?.Invoke(objTag);
+    }    
+    
+    internal static void FireArrestedPlayerEvent(string objTag)
+    {
+        Sound?.Invoke(objTag);
     }
 
 }

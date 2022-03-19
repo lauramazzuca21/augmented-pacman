@@ -19,6 +19,13 @@ namespace Assets.Scripts
             {T_ENEMY, 800 }
         };
 
+        public static Dictionary<string, string> Sounds = new Dictionary<string, string>
+        {
+            {T_MONEY, "Coin" },
+            {T_CREDITCARD, "ATM" },
+            {T_ENEMY, "" }
+        };
+
         public static Dictionary<KeyValuePair<Direction, Direction>, float> RotationVector = new Dictionary<KeyValuePair<Direction, Direction>, float>
         {
             { new KeyValuePair<Direction, Direction>(Direction.RIGHT, Direction.UP), -90.0f },

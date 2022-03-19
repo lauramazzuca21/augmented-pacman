@@ -39,7 +39,7 @@ public class AgentMovement : MonoBehaviour
     void Update()
     {
 
-        transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+        //transform.position = new Vector3(transform.position.x, 10.1f, transform.position.z);
 
         //controllo sulla distanza per attivare l'inseguimento
         //Debug.Log(Vector3.Distance(transform.position, player.transform.position));
@@ -146,23 +146,23 @@ public class AgentMovement : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("ARRESTALO!");
-        if (other.CompareTag("Player"))
-        {
-            isTimeToArrest = true;
-        }
-    }
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log("ARRESTALO!");
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        isTimeToArrest = true;
+    //    }
+    //}
 
-    void OnTriggerExit(Collider other)
-    {
-        Debug.Log("E' SCAPPATO!");
-        if (other.CompareTag("Player"))
-        {
-            isTimeToArrest = false;
-        }
-    }
+    //void OnTriggerExit(Collider other)
+    //{
+    //    Debug.Log("E' SCAPPATO!");
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        isTimeToArrest = false;
+    //    }
+    //}
 
     public static Vector3 RandomNavSphere(Vector3 origin, float distance, int layermask)
     {

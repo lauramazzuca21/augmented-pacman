@@ -13,5 +13,9 @@ public class PointTrigger : MonoBehaviour
             EventManager.FirePowerUpEvent(PowerUp.PIMP);
         if (Constants.Points.TryGetValue(other.gameObject.tag, out pts))
             EventManager.FirePointsEvent(other.gameObject, pts);
+
+        string audio;
+        if (Constants.Sounds.TryGetValue(other.gameObject.tag, out audio))
+            EventManager.FireSoundEvent(audio);
     }
 }
