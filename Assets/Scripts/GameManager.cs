@@ -79,10 +79,10 @@ public class GameManager : MonoBehaviour
         moneyLeft = moneyLeftObj.Length;
         Debug.Log("Rimangono " + moneyLeft + " banconote");
 
-        playerCarInitialPos = playerCar.transform.position;
-        policeCar1InitialPos = policeCar1.transform.position;
-        policeCar1InitialPos = policeCar1.transform.position;
-        policeCar1InitialPos = policeCar1.transform.position;
+        //playerCarInitialPos = playerCar.transform.position;
+        //policeCar1InitialPos = policeCar1.transform.position;
+        //policeCar1InitialPos = policeCar1.transform.position;
+        //policeCar1InitialPos = policeCar1.transform.position;
 
         //EVENTS
         EventManager.Points += ReceivePoints;
