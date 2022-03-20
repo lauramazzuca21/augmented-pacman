@@ -80,10 +80,11 @@ public class GameManager : MonoBehaviour
         moneyLeft = moneyLeftObj.Length;
         Debug.Log("Rimangono " + moneyLeft + " banconote");
 
-        //playerCarInitialPos = playerCar.transform.position;
-        //policeCar1InitialPos = policeCar1.transform.position;
-        //policeCar1InitialPos = policeCar1.transform.position;
-        //policeCar1InitialPos = policeCar1.transform.position;
+        playerCarInitialPos = playerCar.transform.position;
+        policeCar1InitialPos = policeCar1.transform.position;
+        policeCar2InitialPos = policeCar2.transform.position;
+        policeCar3InitialPos = policeCar3.transform.position;
+        policeCar4InitialPos = policeCar4.transform.position;
 
         //EVENTS
         EventManager.Points += ReceivePoints;
@@ -178,6 +179,17 @@ public class GameManager : MonoBehaviour
 
         //ref to status
         modSharkCarActive = false;
+
+        RestorePosition();
+    }
+
+    public void RestorePosition()
+    {
+        playerCar.transform.position = playerCarInitialPos;
+        policeCar1.transform.position = policeCar1InitialPos;
+        policeCar2.transform.position = policeCar2InitialPos;
+        policeCar3.transform.position = policeCar3InitialPos;
+        policeCar4.transform.position = policeCar4InitialPos;
     }
 }
 
