@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
     //ref to PlayerStats
     [SerializeField] private int score = 0; 
     [SerializeField] private int lives = 3;
-    [SerializeField] private int livesInitial = 3;
 
     //ref to game
     [SerializeField] GameObject[] moneyLeftObj;
@@ -115,15 +114,14 @@ public class GameManager : MonoBehaviour
     //GAMEPLAY FUNCTION
     private void HandleArrestedPlayer()
     {
-        livesImgs[livesInitial - lives].SetActive(false);
-
-        lives--;
+        livesImgs[lives-1].SetActive(false);
 
         if (lives == 0)
         {
             ShowPanelEndGame("Sei stato arrestato");
             return;
         }
+        lives--;
     }
 
     private void HandlePoliceCaught(GameObject policeCar)

@@ -23,11 +23,17 @@ public class PlayerController : MonoBehaviour
     private Direction _currentDirection = Direction.RIGHT;
 
     private Coroutine powerupTimer;
+    private Vector3 initialPosition;
 
+    private void Awake()
+    {
+        initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    }
     // Start is called before the first frame update
     void Start()
     {
         EventManager.PowerUpBegin += HandleSharkMod;
+        EventManager.ArrestedPlayer += ResetPositions;
     }
 
     // Update is called once per frame
@@ -91,4 +97,10 @@ public class PlayerController : MonoBehaviour
         transform.position = transform.position + newPos;
 
     }
+
+    public void ResetPositions()
+    {
+        transform.position = initialPosition;
+    }
+
 }

@@ -13,7 +13,7 @@ public class SoundManager : MonoBehaviour
     {
         EventManager.Sound += CollectPoints;
         EventManager.ArrestedPlayer += StartSoundArrested;
-        EventManager.SmashPolice += StartSoundSmashPoilice;
+        EventManager.PoliceCaught += StartSoundSmashPoilice;
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -56,7 +56,7 @@ public class SoundManager : MonoBehaviour
         }
     }    
     
-    private void StartSoundSmashPoilice()
+    private void StartSoundSmashPoilice(GameObject policeCar)
     {
         if (audioSource.isPlaying && audioSource.clip.name == "Police")
             return;
