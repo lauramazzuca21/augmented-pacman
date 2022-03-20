@@ -12,8 +12,7 @@ public class AgentMovement : MonoBehaviour
     //ref to arrest player
     public Transform playerTransform;
     public PlayerController playerController;
-    [SerializeField] bool isTimeToArrest = false;
-    [SerializeField] float minDistToArrest = 15.0f;
+    [SerializeField] bool isTimeToArrest = false;    
 
     //ref to random movement
     [SerializeField] bool isTravelStart = false;
@@ -22,8 +21,9 @@ public class AgentMovement : MonoBehaviour
     [SerializeField] GameObject[] randomPoints;
 
     //ref to CheckDistance function
-    [SerializeField] float checkDistance = 0.5f;
+    [SerializeField] float checkRandomPointDistance = 0.5f;
     [SerializeField] float distanceFromShark = 25f;
+    [SerializeField] float minDistToArrest = 5.0f;
     [SerializeField] float recalculateDistance = 5f; //dovrebbe cercare un altro percorso, non ottimale ma va bhe
 
     // Start is called before the first frame update
@@ -41,7 +41,9 @@ public class AgentMovement : MonoBehaviour
         //controllo sulla distanza per attivare l'inseguimento
         //Debug.Log(Vector3.Distance(transform.position, playerTransform.position));
 
-        if (Vector3.Distance(transform.position, playerTransform.position) <= minDistToArrest)
+        //range entro cui devo inseguire il player se lo vedo
+        
+        if (CheckDIstance(transform.position, playerTransform.position, minDistToArrest))
         {
             isTimeToArrest = true;
         }
@@ -85,7 +87,7 @@ public class AgentMovement : MonoBehaviour
         else
         {
             //controllo se non sono arrivato
-            if (CheckDIstance(transform.position, randomDestination, checkDistance))
+            if (CheckDIstance(transform.position, randomDestination, checkRandomPointDistance))
             {
                 isTravelStart = false;
             }
@@ -142,24 +144,6 @@ public class AgentMovement : MonoBehaviour
             PickRandomPoint();
         }
     }
-
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    Debug.Log("ARRESTALO!");
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        isTimeToArrest = true;
-    //    }
-    //}
-
-    //void OnTriggerExit(Collider other)
-    //{
-    //    Debug.Log("E' SCAPPATO!");
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        isTimeToArrest = false;
-    //    }
-    //}
 
     public static Vector3 RandomNavSphere(Vector3 origin, float distance, int layermask)
     {
