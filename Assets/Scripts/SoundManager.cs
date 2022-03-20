@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         EventManager.Sound += CollectPoints;
+        EventManager.ArrestedPlayer += StartSoundArrested;
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -32,5 +33,17 @@ public class SoundManager : MonoBehaviour
                 audioSource.Play();
             }
         }      
+    }
+
+    private void StartSoundArrested()
+    {
+        foreach (AudioClip audio in sounds)
+        {
+            if (audio.name == "Police")
+            {
+                audioSource.clip = audio;
+                audioSource.Play();
+            }
+        }
     }
 }
