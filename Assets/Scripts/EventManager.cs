@@ -12,6 +12,9 @@ public class EventManager : MonoBehaviour
     public delegate void ReceiveArrestedPlayer();
     public static event ReceiveArrestedPlayer ArrestedPlayer;
 
+    public delegate void ReceiveSmashPolice();
+    public static event ReceiveSmashPolice SmashPolice;
+
     public delegate void ReceivePowerUpBegin(Assets.Scripts.PowerUp powerUp);
     public static event ReceivePowerUpBegin PowerUpBegin;
 

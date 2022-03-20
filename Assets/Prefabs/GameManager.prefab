@@ -115,6 +115,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 33b4489c03aa95d4f8234af01898c334, type: 3}
   - {fileID: 8300000, guid: 16e626688ed5f2c4ea9d19d67872d5e0, type: 3}
   - {fileID: 8300000, guid: f61267816dd77a040b141260b716f5ff, type: 3}
+  - {fileID: 8300000, guid: 1833ea63f898d1949bee84c6903c2b75, type: 3}
 --- !u!82 &618304701789503713
 AudioSource:
   m_ObjectHideFlags: 0
@@ -268,6 +269,7 @@ MonoBehaviour:
   panelGame: {fileID: 0}
   score: 0
   lives: 3
+  livesInitial: 3
   moneyLeftObj: []
   moneyLeft: 0
   playerCar: {fileID: 0}
