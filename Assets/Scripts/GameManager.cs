@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Vector3 policeCar3InitialPos;
     public GameObject policeCar4;
     [SerializeField] Vector3 policeCar4InitialPos;
-    public ParticleSystem policeCapturePuff;
+    public GameObject policeCapturePuff;
 
     public void SetGameState(GameState state)
     {
@@ -135,8 +135,9 @@ public class GameManager : MonoBehaviour
         if (policeCar == policeCar4)
             posToUse = policeCar4InitialPos;
 
-        policeCapturePuff.transform.position = posToUse;
-        policeCapturePuff.Play();
+        policeCapturePuff.SetActive(true);
+        policeCapturePuff.transform.position = policeCar.transform.position;
+        policeCapturePuff.GetComponent<ParticleSystem>().Play();
         policeCar.transform.position = posToUse;
     }
 
