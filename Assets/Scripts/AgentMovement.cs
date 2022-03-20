@@ -41,38 +41,41 @@ public class AgentMovement : MonoBehaviour
         //Debug.Log(Vector3.Distance(transform.position, playerTransform.position));
 
         //range entro cui devo inseguire il player se lo vedo
-        
-        if (CheckDIstance(transform.position, playerTransform.position, minDistToArrest))
+        if (playerTransform)
         {
-            isTimeToArrest = true;
-        }
-        else
-        {
-            isTimeToArrest = false;
-        }
-
-        if (isTimeToArrest && !playerController.IsPowerupActive)
-        {
-            //devo arrestare il player
-            navMeshAgent.destination = playerTransform.position;
-        }
-        else if (!isTimeToArrest && !playerController.IsPowerupActive)
-        {
-            //scelgo una destinazione random
-            Move();
-
-        }
-        else if (playerController.IsPowerupActive)
-        {
-            //RUN FORREST!
-
-            EscapeFromShark();
-
-            if(CheckDIstance(transform.position, playerTransform.position, recalculateDistance))
+            if (CheckDIstance(transform.position, playerTransform.position, minDistToArrest))
             {
-                CheckPickPosition();
+                isTimeToArrest = true;
+            }
+            else
+            {
+                isTimeToArrest = false;
+            }
+
+            if (isTimeToArrest && !playerController.IsPowerupActive)
+            {
+                //devo arrestare il player
+                navMeshAgent.destination = playerTransform.position;
+            }
+            else if (!isTimeToArrest && !playerController.IsPowerupActive)
+            {
+                //scelgo una destinazione random
+                Move();
+
+            }
+            else if (playerController.IsPowerupActive)
+            {
+                //RUN FORREST!
+
+                EscapeFromShark();
+
+                if (CheckDIstance(transform.position, playerTransform.position, recalculateDistance))
+                {
+                    CheckPickPosition();
+                }
             }
         }
+ 
     }
 
     private void Move()
