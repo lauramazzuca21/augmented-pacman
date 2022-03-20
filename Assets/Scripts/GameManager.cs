@@ -25,17 +25,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //piano B
+    public TMP_Text timerText;
+    public TMP_Text timeArrestedText;
+    public float timer = 0;
+    public int timeArrested = 0;
+
     //ref to UI
     //public UnityEngine.UI.Text scorePoints;
     public TMP_Text scorePoints;
     public TMP_Text msgEndGame;
-    public GameObject[] livesImgs;
+    //public GameObject[] livesImgs;
     public GameObject panelEndGame;
     public GameObject panelGame;
 
     //ref to PlayerStats
     [SerializeField] private int score = 0; 
-    [SerializeField] private int lives = 3;
+    //[SerializeField] private int lives = 3;
 
     //ref to game
     [SerializeField] GameObject[] moneyObj;
@@ -92,6 +98,13 @@ public class GameManager : MonoBehaviour
         EventManager.ArrestedPlayer += HandleArrestedPlayer;
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        timer = timer + Time.deltaTime;
+        timerText.text = timer.ToString();
+    }
+
     private void ReceivePoints(GameObject obj, int pts)
     {
         score += pts;
@@ -107,29 +120,24 @@ public class GameManager : MonoBehaviour
         }
 
         if (obj.tag != Constants.T_ENEMY)
+        {
             obj.SetActive(false);
+            StartCoroutine(RestoreItem(obj));
+        }
+            
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator RestoreItem(GameObject obj)
     {
-
+        yield return new WaitForSeconds(10f);
+        obj.SetActive(true);
     }
 
     //GAMEPLAY FUNCTION
     private void HandleArrestedPlayer()
     {
-        if (lives == 0)
-            return;
-
-        livesImgs[lives-1].SetActive(false);
-
-        lives--;
-        if (lives == 0)
-        {
-            ShowPanelEndGame("Sei stato arrestato");
-            return;
-        }
+        timeArrested++;
+        timeArrestedText.text = timeArrested.ToString();
     }
 
     private void HandlePoliceCaught(GameObject policeCar)
@@ -172,7 +180,7 @@ public class GameManager : MonoBehaviour
         //StartCoroutine(Reload());
         //SceneManager.LoadScene(Constants.S_Loading, LoadSceneMode.Single);
         score = 0;
-        lives = 3;
+        //lives = 3;
 
         playerCar.SetActive(true);
         panelGame.SetActive(true);
