@@ -496,10 +496,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45f5dc820e9c624487435116e74e407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  gameManagerScript: {fileID: 0}
   navMeshAgent: {fileID: 938490796}
-  player: {fileID: 0}
+  playerTransform: {fileID: 0}
+  playerController: {fileID: 0}
   isTimeToArrest: 0
   minDistToArrest: 15
   isTravelStart: 0

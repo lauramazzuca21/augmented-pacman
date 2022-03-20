@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
 
     private Direction _previousDirection = Direction.RIGHT;
     private Direction _currentDirection = Direction.RIGHT;
-    
+
+    private Coroutine powerupTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -37,21 +38,26 @@ public class PlayerController : MonoBehaviour
 
     private void HandleSharkMod(PowerUp powerUp)
     {
-        puff.Play();
-        car.SetActive(false);
-        pimpedcar.SetActive(true);
-        powerupActive = true;
-        StartCoroutine(ResetSharkMod(powerUp));
+        if (powerupActive)
+            StopCoroutine(powerupTimer);
+        else
+        {
+            puff.Play();
+            car.SetActive(false);
+            pimpedcar.SetActive(true);
+            powerupActive = true;
+        }
+        powerupTimer = StartCoroutine(ResetSharkMod(powerUp));
     }
 
     IEnumerator ResetSharkMod(PowerUp powerUp)
     {
         yield return new WaitForSeconds(15f);
+        powerupActive = false;
         EventManager.FirePowerUpEndEvent(powerUp);
         puff.Play();
         car.SetActive(true);
         pimpedcar.SetActive(false);
-        powerupActive = false;
     }
 
     private void Move()

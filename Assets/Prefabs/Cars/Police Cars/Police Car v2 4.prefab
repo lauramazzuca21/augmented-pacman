@@ -5044,7 +5044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 1790606949}
   playerTransform: {fileID: 0}
-  playerMovementScript: {fileID: 0}
+  playerController: {fileID: 0}
   isTimeToArrest: 0
   minDistToArrest: 15
   isTravelStart: 0

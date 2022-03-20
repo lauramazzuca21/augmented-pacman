@@ -1093,12 +1093,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 742c7fee15dc11a46976adaa1ae00d5b, type: 3}
---- !u!1 &333257708 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 618304702903229867, guid: b972cc9e94186a843ae26e5d53c172b4,
-    type: 3}
-  m_PrefabInstance: {fileID: 140189055}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &370366481
 Mesh:
   m_ObjectHideFlags: 0
@@ -1319,33 +1313,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1184050176, guid: 4a6998027130e224d90a7b922aa85591, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1171867188500214534}
-    - target: {fileID: 1184050176, guid: 4a6998027130e224d90a7b922aa85591, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 333257708}
-    - target: {fileID: 1184050176, guid: 4a6998027130e224d90a7b922aa85591, type: 3}
-      propertyPath: navMeshAgent
-      value: 
-      objectReference: {fileID: 467739231}
-    - target: {fileID: 1184050176, guid: 4a6998027130e224d90a7b922aa85591, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1171867188500214536}
     - target: {fileID: 1184050176, guid: 4a6998027130e224d90a7b922aa85591, type: 3}
-      propertyPath: playerMovementScript
+      propertyPath: playerController
       value: 
       objectReference: {fileID: 1171867188500214537}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a6998027130e224d90a7b922aa85591, type: 3}
---- !u!195 &467739231 stripped
-NavMeshAgent:
-  m_CorrespondingSourceObject: {fileID: 1184050177, guid: 4a6998027130e224d90a7b922aa85591,
-    type: 3}
-  m_PrefabInstance: {fileID: 467739230}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &530947718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1693,19 +1669,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 754274182, guid: 09825d8753b7bfa47929c245690d59c4, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1171867188500214534}
-    - target: {fileID: 754274182, guid: 09825d8753b7bfa47929c245690d59c4, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 333257708}
-    - target: {fileID: 754274182, guid: 09825d8753b7bfa47929c245690d59c4, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1171867188500214536}
     - target: {fileID: 754274182, guid: 09825d8753b7bfa47929c245690d59c4, type: 3}
-      propertyPath: playerMovementScript
+      propertyPath: playerController
       value: 
       objectReference: {fileID: 1171867188500214537}
     m_RemovedComponents: []
@@ -1925,19 +1893,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 938490795, guid: 4d5eca5256c268d40a9be50903005eb5, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1171867188500214534}
-    - target: {fileID: 938490795, guid: 4d5eca5256c268d40a9be50903005eb5, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 333257708}
-    - target: {fileID: 938490795, guid: 4d5eca5256c268d40a9be50903005eb5, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1171867188500214536}
     - target: {fileID: 938490795, guid: 4d5eca5256c268d40a9be50903005eb5, type: 3}
-      propertyPath: playerMovementScript
+      propertyPath: playerController
       value: 
       objectReference: {fileID: 1171867188500214537}
     m_RemovedComponents: []
@@ -2225,7 +2185,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1171867188500214536}
     - target: {fileID: 1790606948, guid: d9a374955673ca74cbdd0da223664ea9, type: 3}
-      propertyPath: playerMovementScript
+      propertyPath: playerController
       value: 
       objectReference: {fileID: 1171867188500214537}
     - target: {fileID: 2987518529292614696, guid: d9a374955673ca74cbdd0da223664ea9,
