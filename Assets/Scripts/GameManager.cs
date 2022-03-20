@@ -25,17 +25,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //piano B
+    public TMP_Text timerText;
+    public TMP_Text timeArrestedText;
+    public float timer = 0;
+    public int timeArrested = 0;
+
     //ref to UI
     //public UnityEngine.UI.Text scorePoints;
     public TMP_Text scorePoints;
     public TMP_Text msgEndGame;
-    public GameObject[] livesImgs;
+    //public GameObject[] livesImgs;
     public GameObject panelEndGame;
     public GameObject panelGame;
 
     //ref to PlayerStats
     [SerializeField] private int score = 0; 
-    [SerializeField] private int lives = 3;
+    //[SerializeField] private int lives = 3;
 
     //ref to game
     [SerializeField] GameObject[] moneyObj;
@@ -56,6 +62,8 @@ public class GameManager : MonoBehaviour
     //particles
     public GameObject policeCapturePuff;
     public GameObject fireworks;
+
+    public bool infinityMode = false;
 
     public void SetGameState(GameState state)
     {
@@ -90,43 +98,65 @@ public class GameManager : MonoBehaviour
         EventManager.ArrestedPlayer += HandleArrestedPlayer;
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        timer += Time.deltaTime;
+        timerText.text = timer.ToString();
+    }
+
     private void ReceivePoints(GameObject obj, int pts)
     {
         score += pts;
         scorePoints.text = score.ToString();
 
-        if(obj.tag == Constants.T_MONEY)
-            moneyLeft--;
-
-        if (moneyLeft == 0)
+        if (!infinityMode)
         {
-            fireworks.SetActive(true);
-            ShowPanelEndGame("You've successfully escaped!");
+            if(obj.tag == Constants.T_MONEY)
+                moneyLeft--;
+
+            if (moneyLeft == 0)
+            {
+                fireworks.SetActive(true);
+                ShowPanelEndGame("You've successfully escaped!");
+            }
         }
 
         if (obj.tag != Constants.T_ENEMY)
+        {
             obj.SetActive(false);
+            StartCoroutine(RestoreItem(obj));
+        }
+            
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator RestoreItem(GameObject obj)
     {
-
+        yield return new WaitForSeconds(10f);
+        obj.SetActive(true);
     }
 
     //GAMEPLAY FUNCTION
     private void HandleArrestedPlayer()
     {
-        if (lives == 0)
-            return;
-
-        livesImgs[lives-1].SetActive(false);
-
-        lives--;
-        if (lives == 0)
+        if (!infinityMode)
         {
-            ShowPanelEndGame("You've been arrested!");
-            return;
+            if (lives == 0)
+                return;
+
+            livesImgs[lives-1].SetActive(false);
+
+            lives--;
+            if (lives == 0)
+            {
+                ShowPanelEndGame("You've been arrested!");
+                return;
+            }
+        }
+        else
+        {
+            timeArrested++;
+            timeArrestedText.text = timeArrested.ToString();
         }
     }
 
