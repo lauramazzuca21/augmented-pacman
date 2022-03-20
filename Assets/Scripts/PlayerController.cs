@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
     {
         initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         EventManager.PowerUpBegin += HandleSharkMod;
-        EventManager.ArrestedPlayer += ResetPositions;
+        EventManager.ArrestedPlayer += ResetPos;
+        EventManager.Reset += ResetPositions;
     }
 
     // Update is called once per frame
@@ -94,9 +95,22 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void ResetPositions()
+    private void ResetPos()
     {
-        transform.position = initialPosition;
+        ResetPositions(ResetSettings.PLAYER);
+    }
+    private void ResetPositions(ResetSettings settings)
+    {
+        if (settings == ResetSettings.ALL || settings == ResetSettings.PLAYER)
+        {
+            transform.position = initialPosition;
+            if(powerupActive)
+            {
+                car.SetActive(true);
+                pimpedcar.SetActive(false);
+                powerupActive = true;
+            }
+        }
     }
 
 }

@@ -21,6 +21,10 @@ public class EventManager : MonoBehaviour
     public delegate void ReceivePoliceCaught(GameObject policeCar);
     public static event ReceivePoliceCaught PoliceCaught;
 
+    public delegate void ReceiveReset(Assets.Scripts.ResetSettings settings);
+    public static event ReceiveReset Reset;
+
+
     internal static void FirePointsEvent(GameObject gameObject, int pts)
     {
         Points?.Invoke(gameObject, pts);
@@ -48,5 +52,9 @@ public class EventManager : MonoBehaviour
     internal static void FirePoliceCaughtEvent(GameObject gameObject)
     {
         PoliceCaught?.Invoke(gameObject);
+    }
+    internal static void FireResetEvent(Assets.Scripts.ResetSettings settings)
+    {
+        Reset?.Invoke(settings);
     }
 }

@@ -24,6 +24,20 @@ public class AgentMovement : MonoBehaviour
     [SerializeField] float distanceFromShark = 25f;
     [SerializeField] float minDistToArrest = 5.0f;
     [SerializeField] float recalculateDistance = 5f; //dovrebbe cercare un altro percorso, non ottimale ma va bhe
+    [SerializeField] ResetSettings ID;
+    private Vector3 initialPosition;
+
+    private void Awake()
+    {
+        initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        EventManager.Reset += ResetPos;
+    }
+
+    private void ResetPos(ResetSettings settings)
+    {
+        if(settings == ResetSettings.ALL || settings == ResetSettings.ENEMY_ALL || settings == ID)
+            transform.position = initialPosition;
+    }
 
     // Start is called before the first frame update
     void Start()

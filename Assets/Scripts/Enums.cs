@@ -14,4 +14,15 @@
     {
         PIMP
     }
+
+    public enum ResetSettings
+    {
+        ENEMY_ALL,
+        ENEMY_1,
+        ENEMY_2,
+        ENEMY_3,
+        ENEMY_4,
+        PLAYER,
+        ALL
+    }
 }

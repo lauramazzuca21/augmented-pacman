@@ -72,10 +72,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        policeCar1InitialPos = policeCar1.transform.position;
-        policeCar2InitialPos = policeCar2.transform.position;
-        policeCar3InitialPos = policeCar3.transform.position;
-        policeCar4InitialPos = policeCar4.transform.position;
+        policeCar1InitialPos = new Vector3(policeCar1.transform.position.x, policeCar1.transform.position.z, policeCar1.transform.position.z);
+        policeCar2InitialPos = new Vector3(policeCar2.transform.position.x, policeCar1.transform.position.z, policeCar1.transform.position.z);
+        policeCar3InitialPos = new Vector3(policeCar3.transform.position.x, policeCar1.transform.position.z, policeCar1.transform.position.z);
+        policeCar4InitialPos = new Vector3(policeCar4.transform.position.x, policeCar1.transform.position.z, policeCar1.transform.position.z);
     }
 
     // Start is called before the first frame update
@@ -84,8 +84,6 @@ public class GameManager : MonoBehaviour
         moneyObj = GameObject.FindGameObjectsWithTag(Constants.T_MONEY);
         moneyLeft = moneyObj.Length;
         powerupsObj = GameObject.FindGameObjectsWithTag(Constants.T_POWERUP);
-        Debug.Log("Rimangono " + moneyLeft + " banconote");
-
         //EVENTS
         EventManager.Points += ReceivePoints;
         EventManager.PoliceCaught += HandlePoliceCaught;
@@ -103,7 +101,7 @@ public class GameManager : MonoBehaviour
         if (moneyLeft == 0)
         {
             fireworks.SetActive(true);
-            ShowPanelEndGame("Sei scampato alla cattura");
+            ShowPanelEndGame("You've successfully escaped!");
         }
 
         if (obj.tag != Constants.T_ENEMY)
@@ -127,33 +125,36 @@ public class GameManager : MonoBehaviour
         lives--;
         if (lives == 0)
         {
-            ShowPanelEndGame("Sei stato arrestato");
+            ShowPanelEndGame("You've been arrested!");
             return;
         }
     }
 
     private void HandlePoliceCaught(GameObject policeCar)
     {
-        Vector3 posToUse = new Vector3();
+        ResetSettings toReset = ResetSettings.ENEMY_1;
         if (policeCar == policeCar1)
-            posToUse = policeCar1InitialPos;
+            toReset = ResetSettings.ENEMY_1;
         if (policeCar == policeCar2)
-            posToUse = policeCar2InitialPos;
+            toReset = ResetSettings.ENEMY_2;
         if (policeCar == policeCar3)
-            posToUse = policeCar3InitialPos;
+            toReset = ResetSettings.ENEMY_3;
         if (policeCar == policeCar4)
-            posToUse = policeCar4InitialPos;
+            toReset = ResetSettings.ENEMY_4;
 
         policeCapturePuff.SetActive(true);
         policeCapturePuff.transform.position = policeCar.transform.position;
         policeCapturePuff.GetComponent<ParticleSystem>().Play();
-        policeCar.transform.position = posToUse;
+        EventManager.FireResetEvent(toReset);
     }
 
     private void ShowPanelEndGame(string msg)
     {
         playerCar.SetActive(false);
-
+        policeCar1.SetActive(false);
+        policeCar2.SetActive(false);
+        policeCar3.SetActive(false);
+        policeCar4.SetActive(false);
         msgEndGame.text = msg;
 
         panelGame.SetActive(false);
@@ -173,27 +174,23 @@ public class GameManager : MonoBehaviour
         //SceneManager.LoadScene(Constants.S_Loading, LoadSceneMode.Single);
         score = 0;
         lives = 3;
+        moneyLeft = moneyObj.Length;
 
-        playerCar.SetActive(true);
-        panelGame.SetActive(true);
+        foreach (GameObject m in moneyObj) { m.SetActive(true); }
+        foreach (GameObject m in powerupsObj) { m.SetActive(true); }
+        foreach (GameObject m in livesImgs) { m.SetActive(true); }
+        policeCapturePuff.SetActive(false);
+        fireworks.SetActive(false);
         panelEndGame.SetActive(false);
 
-        playerCar.GetComponent<PlayerController>().ResetPositions();
+        panelGame.SetActive(true);
+        playerCar.SetActive(true);
+        policeCar1.SetActive(true);
+        policeCar2.SetActive(true);
+        policeCar3.SetActive(true);
+        policeCar4.SetActive(true);
 
-        //policeCar1.transform.position = policeCar1InitialPos;
-        //policeCar2.transform.position = policeCar2InitialPos;
-        //policeCar3.transform.position = policeCar3InitialPos;
-        //policeCar4.transform.position = policeCar4InitialPos;
-        //moneyLeft = moneyObj.Length;
-        //foreach (GameObject m in moneyObj) { m.SetActive(true); }
-        //foreach (GameObject m in powerupsObj) { m.SetActive(true); }
-
-
-        //for (int i = 0; i < lives; i++) { livesImgs[i].SetActive(true); }
-
-        //policeCapturePuff.SetActive(false);
-        //fireworks.SetActive(false);
-
+        EventManager.FireResetEvent(ResetSettings.ALL);
     }
 }
 
