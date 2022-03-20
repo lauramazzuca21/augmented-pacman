@@ -38,12 +38,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int lives = 3;
 
     //ref to game
-    [SerializeField] GameObject[] moneyLeftObj;
+    [SerializeField] GameObject[] moneyObj;
+    [SerializeField] GameObject[] powerupsObj;
     [SerializeField] int moneyLeft;
 
     //ref to objs
     public GameObject playerCar;
-    [SerializeField] Vector3 playerCarInitialPos;
     public GameObject policeCar1;
     [SerializeField] Vector3 policeCar1InitialPos;
     public GameObject policeCar2;
@@ -52,7 +52,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] Vector3 policeCar3InitialPos;
     public GameObject policeCar4;
     [SerializeField] Vector3 policeCar4InitialPos;
+
+    //particles
     public GameObject policeCapturePuff;
+    public GameObject fireworks;
 
     public void SetGameState(GameState state)
     {
@@ -69,7 +72,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        playerCarInitialPos = playerCar.transform.position;
         policeCar1InitialPos = policeCar1.transform.position;
         policeCar2InitialPos = policeCar2.transform.position;
         policeCar3InitialPos = policeCar3.transform.position;
@@ -79,9 +81,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moneyLeftObj = GameObject.FindGameObjectsWithTag(Constants.T_MONEY);
-        moneyLeft = moneyLeftObj.Length;
-        moneyLeftObj = GameObject.FindGameObjectsWithTag(Constants.T_POWERUP);
+        moneyObj = GameObject.FindGameObjectsWithTag(Constants.T_MONEY);
+        moneyLeft = moneyObj.Length;
+        powerupsObj = GameObject.FindGameObjectsWithTag(Constants.T_POWERUP);
         Debug.Log("Rimangono " + moneyLeft + " banconote");
 
         //EVENTS
@@ -99,7 +101,10 @@ public class GameManager : MonoBehaviour
             moneyLeft--;
 
         if (moneyLeft == 0)
+        {
+            fireworks.SetActive(true);
             ShowPanelEndGame("Sei scampato alla cattura");
+        }
 
         if (obj.tag != Constants.T_ENEMY)
             obj.SetActive(false);
@@ -114,14 +119,17 @@ public class GameManager : MonoBehaviour
     //GAMEPLAY FUNCTION
     private void HandleArrestedPlayer()
     {
+        if (lives == 0)
+            return;
+
         livesImgs[lives-1].SetActive(false);
 
+        lives--;
         if (lives == 0)
         {
             ShowPanelEndGame("Sei stato arrestato");
             return;
         }
-        lives--;
     }
 
     private void HandlePoliceCaught(GameObject policeCar)
@@ -144,7 +152,7 @@ public class GameManager : MonoBehaviour
 
     private void ShowPanelEndGame(string msg)
     {
-        Destroy(playerCar);
+        playerCar.SetActive(false);
 
         msgEndGame.text = msg;
 
@@ -152,9 +160,40 @@ public class GameManager : MonoBehaviour
         panelEndGame.SetActive(true);        
     }
 
+    private IEnumerator Reload()
+    {
+        yield return new WaitForSeconds(6);
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        Resources.UnloadUnusedAssets();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+    }
     public void RestartGame()
     {
-        SceneManager.LoadScene(Constants.S_1, LoadSceneMode.Single);
+        //StartCoroutine(Reload());
+        //SceneManager.LoadScene(Constants.S_Loading, LoadSceneMode.Single);
+        score = 0;
+        lives = 3;
+
+        playerCar.SetActive(true);
+        panelGame.SetActive(true);
+        panelEndGame.SetActive(false);
+
+        playerCar.GetComponent<PlayerController>().ResetPositions();
+
+        //policeCar1.transform.position = policeCar1InitialPos;
+        //policeCar2.transform.position = policeCar2InitialPos;
+        //policeCar3.transform.position = policeCar3InitialPos;
+        //policeCar4.transform.position = policeCar4InitialPos;
+        //moneyLeft = moneyObj.Length;
+        //foreach (GameObject m in moneyObj) { m.SetActive(true); }
+        //foreach (GameObject m in powerupsObj) { m.SetActive(true); }
+
+
+        //for (int i = 0; i < lives; i++) { livesImgs[i].SetActive(true); }
+
+        //policeCapturePuff.SetActive(false);
+        //fireworks.SetActive(false);
+
     }
 }
 

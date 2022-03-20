@@ -12,6 +12,7 @@ namespace Assets.Scripts
         public static string T_POWERUP = "PowerUp";
         public static string T_ENEMY = "Enemy";
         public static string S_1 = "SampleScene 1";
+        public static string S_Loading = "MenuEndGame";
 
         public static Dictionary<string, int> Points = new Dictionary<string, int>
         {
@@ -46,6 +47,7 @@ namespace Assets.Scripts
             { new KeyValuePair<Direction, Direction>(Direction.RIGHT, Direction.RIGHT), 0.0f },
             { new KeyValuePair<Direction, Direction>(Direction.UP, Direction.UP), 0.0f }
         };
+
     }
     
 }

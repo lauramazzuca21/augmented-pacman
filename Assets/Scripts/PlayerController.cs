@@ -28,10 +28,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
         EventManager.PowerUpBegin += HandleSharkMod;
         EventManager.ArrestedPlayer += ResetPositions;
     }
