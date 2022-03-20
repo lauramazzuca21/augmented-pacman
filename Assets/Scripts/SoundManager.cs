@@ -25,8 +25,11 @@ public class SoundManager : MonoBehaviour
     }
 
     private void CollectPoints(string tag)
-    {        
-        foreach(AudioClip audio in sounds)
+    {
+        if (audioSource.isPlaying && audioSource.clip.name == "Police")
+            return;
+
+        foreach (AudioClip audio in sounds)
         {
             if(audio.name == tag)
             {
@@ -55,6 +58,9 @@ public class SoundManager : MonoBehaviour
     
     private void StartSoundSmashPoilice()
     {
+        if (audioSource.isPlaying && audioSource.clip.name == "Police")
+            return;
+
         foreach (AudioClip audio in sounds)
         {
             if (audio.name == "Smash")
