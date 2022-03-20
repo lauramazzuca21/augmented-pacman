@@ -11,19 +11,25 @@ public class EventManager : MonoBehaviour
     public delegate void ManageArrestedPlayer();
     public static event ManageArrestedPlayer ArrestedPlayer;
 
-    public delegate void ReceivePowerUp(Assets.Scripts.PowerUp powerUp);
-    public static event ReceivePowerUp PowerUp;
+    public delegate void ReceivePowerUpBegin(Assets.Scripts.PowerUp powerUp);
+    public static event ReceivePowerUpBegin PowerUpBegin;
 
+    public delegate void ReceivePowerUpEnd(Assets.Scripts.PowerUp powerUp);
+    public static event ReceivePowerUpBegin PowerUpEnd;
     internal static void FirePointsEvent(GameObject obj, int pts)
     {
         Points?.Invoke(obj, pts);
     }
 
-    internal static void FirePowerUpEvent(Assets.Scripts.PowerUp powerUp)
+    internal static void FirePowerUpBeginEvent(Assets.Scripts.PowerUp powerUp)
     {
-        PowerUp?.Invoke(powerUp);
-    } 
-    
+        PowerUpBegin?.Invoke(powerUp);
+    }
+    internal static void FirePowerUpEndEvent(Assets.Scripts.PowerUp powerUp)
+    {
+        PowerUpEnd?.Invoke(powerUp);
+    }
+
     internal static void FireSoundEvent(string objTag)
     {
         Sound?.Invoke(objTag);

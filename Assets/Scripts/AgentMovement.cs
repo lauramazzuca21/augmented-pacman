@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,15 +6,12 @@ using UnityEngine.AI;
 
 public class AgentMovement : MonoBehaviour
 {
-    //ref to GM
-    public GameObject gameManager;
-    public GameManager gameManagerScript;
-
     //ref to momevent
     public NavMeshAgent navMeshAgent;
 
     //ref to arrest player
-    public GameObject player;
+    public Transform playerTransform;
+    public PlayerController playerController;
     [SerializeField] bool isTimeToArrest = false;
     [SerializeField] float minDistToArrest = 15.0f;
 
@@ -31,7 +29,6 @@ public class AgentMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManagerScript = gameManager.GetComponent<GameManager>();
         randomPoints = GameObject.FindGameObjectsWithTag("RandomPoint");
     }
 
@@ -42,9 +39,9 @@ public class AgentMovement : MonoBehaviour
         //transform.position = new Vector3(transform.position.x, 10.1f, transform.position.z);
 
         //controllo sulla distanza per attivare l'inseguimento
-        //Debug.Log(Vector3.Distance(transform.position, player.transform.position));
+        //Debug.Log(Vector3.Distance(transform.position, playerTransform.position));
 
-        if (Vector3.Distance(transform.position, player.transform.position) <= minDistToArrest)
+        if (Vector3.Distance(transform.position, playerTransform.position) <= minDistToArrest)
         {
             isTimeToArrest = true;
         }
@@ -53,24 +50,24 @@ public class AgentMovement : MonoBehaviour
             isTimeToArrest = false;
         }
 
-        if (isTimeToArrest && !gameManagerScript.modSharkCarActive)
+        if (isTimeToArrest && !playerController.IsPowerupActive)
         {
             //devo arrestare il player
-            navMeshAgent.destination = player.transform.position;
+            navMeshAgent.destination = playerTransform.position;
         }
-        else if (!isTimeToArrest && !gameManagerScript.modSharkCarActive)
+        else if (!isTimeToArrest && !playerController.IsPowerupActive)
         {
             //scelgo una destinazione random
             Move();
 
         }
-        else if (gameManagerScript.modSharkCarActive)
+        else if (playerController.IsPowerupActive)
         {
             //RUN FORREST!
 
             EscapeFromShark();
 
-            if(CheckDIstance(transform.position, player.transform.position, recalculateDistance))
+            if(CheckDIstance(transform.position, playerTransform.position, recalculateDistance))
             {
                 CheckPickPosition();
             }
@@ -139,7 +136,7 @@ public class AgentMovement : MonoBehaviour
 
     private void CheckPickPosition()
     {
-        while (CheckDIstance(randomDestination, player.transform.position, distanceFromShark))
+        while (CheckDIstance(randomDestination, playerTransform.position, distanceFromShark))
         {
             //pick a position far away
             PickRandomPoint();

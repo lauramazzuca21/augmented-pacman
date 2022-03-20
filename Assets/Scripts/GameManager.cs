@@ -39,8 +39,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int lives = 3;
 
     //ref to game
-    public bool x = false;
-    public bool modSharkCarActive = false;
+    public bool playerGotArrested = false;
     [SerializeField] GameObject[] moneyLeftObj;
     [SerializeField] int moneyLeft;
 
@@ -87,7 +86,6 @@ public class GameManager : MonoBehaviour
 
         //EVENTS
         EventManager.Points += ReceivePoints;
-        EventManager.PowerUp += HandlePowerup;
     }
 
     private void ReceivePoints(GameObject obj, int pts)
@@ -99,13 +97,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Rimangono " + moneyLeft + " banconote");
 
         Destroy(obj);
-    }
-
-    private void HandlePowerup(PowerUp powerUp)
-    {
-        modSharkCarActive = true;
-        
-        player.GetComponent<Movement>().ActivatePowerup();
     }
 
     // Update is called once per frame
@@ -129,21 +120,11 @@ public class GameManager : MonoBehaviour
         }
 
         //test
-        if (x)
+        if (playerGotArrested)
         {
-            x = false;
+            playerGotArrested = false;
             ArrestedPlayer();
         }
-
-        if (modSharkCarActive)
-        {
-            StartCoroutine(ResetSharkMod());
-        }
-    }
-    IEnumerator ResetSharkMod()
-    {
-        yield return new WaitForSeconds(15f);
-        modSharkCarActive = false;
     }
 
     //GAMEPLAY FUNCTION
@@ -175,9 +156,6 @@ public class GameManager : MonoBehaviour
         //panels
         panelGame.SetActive(true);
         panelEndGame.SetActive(false);
-
-        //ref to status
-        modSharkCarActive = false;
     }
 }
 

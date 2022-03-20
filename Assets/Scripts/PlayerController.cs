@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private Joystick joystick;
@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour
     private ParticleSystem puff;
 
     private bool powerupActive = false;
+    public bool IsPowerupActive { get { return powerupActive; } private set { powerupActive = value; } }
 
     private Direction _previousDirection = Direction.RIGHT;
     private Direction _currentDirection = Direction.RIGHT;
@@ -25,7 +26,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        EventManager.PowerUpBegin += HandleSharkMod;
     }
 
     // Update is called once per frame
@@ -34,12 +35,23 @@ public class Movement : MonoBehaviour
         Move();
     }
 
-    public void ActivatePowerup()
+    private void HandleSharkMod(PowerUp powerUp)
     {
         puff.Play();
         car.SetActive(false);
         pimpedcar.SetActive(true);
         powerupActive = true;
+        StartCoroutine(ResetSharkMod(powerUp));
+    }
+
+    IEnumerator ResetSharkMod(PowerUp powerUp)
+    {
+        yield return new WaitForSeconds(15f);
+        EventManager.FirePowerUpEndEvent(powerUp);
+        puff.Play();
+        car.SetActive(true);
+        pimpedcar.SetActive(false);
+        powerupActive = false;
     }
 
     private void Move()

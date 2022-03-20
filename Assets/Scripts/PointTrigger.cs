@@ -10,7 +10,7 @@ public class PointTrigger : MonoBehaviour
         Debug.Log("Inside trigger");
         int pts;
         if (other.gameObject.tag == Constants.T_CREDITCARD)
-            EventManager.FirePowerUpEvent(PowerUp.PIMP);
+            EventManager.FirePowerUpBeginEvent(PowerUp.PIMP);
         if (Constants.Points.TryGetValue(other.gameObject.tag, out pts))
             EventManager.FirePointsEvent(other.gameObject, pts);
 
