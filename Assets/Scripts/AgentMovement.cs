@@ -16,7 +16,6 @@ public class AgentMovement : MonoBehaviour
 
     //ref to random movement
     [SerializeField] bool isTravelStart = false;
-    [SerializeField] float rayDistance = 200.0f;
     [SerializeField] Vector3 randomDestination;
     [SerializeField] GameObject[] randomPoints;
 
