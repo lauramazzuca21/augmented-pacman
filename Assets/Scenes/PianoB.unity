@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028359, g: 0.22571385, b: 0.30692258, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -383,6 +383,11 @@ PrefabInstance:
       objectReference: {fileID: 4531072116860893154}
     - target: {fileID: 618304702903229866, guid: b972cc9e94186a843ae26e5d53c172b4,
         type: 3}
+      propertyPath: infinityMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 618304702903229866, guid: b972cc9e94186a843ae26e5d53c172b4,
+        type: 3}
       propertyPath: panelEndGame
       value: 
       objectReference: {fileID: 8871732092942575030}
@@ -695,6 +700,36 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 280656599}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1148182338
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'Report10Material
+
+    879794'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 76355b22f3fc450ba06df49df45091f2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1184050174 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 190504483, guid: 742c7fee15dc11a46976adaa1ae00d5b,
@@ -999,36 +1034,6 @@ RectTransform:
   m_AnchoredPosition: {x: -745, y: -2.5}
   m_SizeDelta: {x: 250, y: 95}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!21 &1428097396
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'Report10Material
-
-    621716'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 76355b22f3fc450ba06df49df45091f2, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
-  m_BuildTextureStacks: []
 --- !u!4 &1433589406 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 618304702903229869, guid: b972cc9e94186a843ae26e5d53c172b4,
@@ -1269,7 +1274,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1428097396}
+  - {fileID: 1148182338}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

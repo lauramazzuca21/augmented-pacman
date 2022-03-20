@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MenuEndGame.unity
     guid: b436804a96424694281ad9bed1187f2a
+  - enabled: 1
+    path: Assets/Scenes/PianoB.unity
+    guid: 9c0da8f892f69574ab83a50f8aa69572
   m_configObjects: {}

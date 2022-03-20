@@ -35,13 +35,13 @@ public class GameManager : MonoBehaviour
     //public UnityEngine.UI.Text scorePoints;
     public TMP_Text scorePoints;
     public TMP_Text msgEndGame;
-    //public GameObject[] livesImgs;
+    public GameObject[] livesImgs;
     public GameObject panelEndGame;
     public GameObject panelGame;
 
     //ref to PlayerStats
     [SerializeField] private int score = 0; 
-    //[SerializeField] private int lives = 3;
+    [SerializeField] private int lives = 3;
 
     //ref to game
     [SerializeField] GameObject[] moneyObj;
