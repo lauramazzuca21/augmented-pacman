@@ -457,7 +457,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100010}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 9.015894, y: 7.3406134, z: 16.26836}
@@ -500,9 +500,8 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   playerController: {fileID: 0}
   isTimeToArrest: 0
-  minDistToArrest: 15
+  minDistToArrest: 5
   isTravelStart: 0
-  rayDistance: 200
   randomDestination: {x: 0, y: 0, z: 0}
   randomPoints: []
   checkDistance: 0.5

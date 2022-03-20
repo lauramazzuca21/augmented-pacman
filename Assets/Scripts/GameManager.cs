@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int lives = 3;
 
     //ref to game
-    public bool playerGotArrested = false;
     [SerializeField] GameObject[] moneyLeftObj;
     [SerializeField] int moneyLeft;
 
@@ -87,6 +86,8 @@ public class GameManager : MonoBehaviour
 
         //EVENTS
         EventManager.Points += ReceivePoints;
+        EventManager.PoliceCaught += HandlePoliceCaught;
+        EventManager.ArrestedPlayer += HandleArrestedPlayer;
     }
 
     private void ReceivePoints(GameObject obj, int pts)
@@ -94,45 +95,43 @@ public class GameManager : MonoBehaviour
         score += pts;
         scorePoints.text = score.ToString();
 
-        moneyLeft--;
-        Debug.Log("Rimangono " + moneyLeft + " banconote");
+        if(obj.tag == Constants.T_MONEY)
+            moneyLeft--;
 
-        Destroy(obj);
+        if (moneyLeft == 0)
+            ShowPanelEndGame("Sei scampato alla cattura");
+
+        if (obj.tag != Constants.T_ENEMY)
+            obj.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (lives == 0)
-        {
-            Debug.Log("hai perso!");
-            lives--;
 
-            ShowPanelEndGame("Sei stato arrestato");
-
-        }
-
-        if (moneyLeft == 0)
-        {
-            Debug.Log("hai vinto!");
-            
-            ShowPanelEndGame("Sei scampato alla cattura");
-
-        }
-
-        //test
-        if (playerGotArrested)
-        {
-            playerGotArrested = false;
-            ArrestedPlayer();
-        }
     }
 
     //GAMEPLAY FUNCTION
-    public void ArrestedPlayer()
+    private void HandleArrestedPlayer()
     {
         lives--;
         livesImgs[lives].SetActive(false);
+        if (lives == 0)
+        {
+            ShowPanelEndGame("Sei stato arrestato");
+        }
+    }
+
+    private void HandlePoliceCaught(GameObject policeCar)
+    {
+        if(policeCar == policeCar1)
+            policeCar1.transform.position = policeCar1InitialPos;
+        if (policeCar == policeCar2)
+            policeCar2.transform.position = policeCar2InitialPos;
+        if (policeCar == policeCar3)
+            policeCar3.transform.position = policeCar3InitialPos;
+        if (policeCar == policeCar4)
+            policeCar4.transform.position = policeCar4InitialPos;
     }
 
     private void ShowPanelEndGame(string msg)
