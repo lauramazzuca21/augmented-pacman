@@ -20,7 +20,7 @@ public class PointTrigger : MonoBehaviour
             }
         }
 
-        if (other.gameObject.tag == Constants.T_CREDITCARD)
+        if (other.gameObject.tag == Constants.T_POWERUP)
             EventManager.FirePowerUpBeginEvent(PowerUp.PIMP);
 
         int pts;

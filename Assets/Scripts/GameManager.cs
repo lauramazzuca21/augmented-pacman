@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
     public GameObject[] livesImgs;
     public GameObject panelEndGame;
     public GameObject panelGame;
-    public GameObject player;
 
     //ref to PlayerStats
     [SerializeField] private int score = 0; 
@@ -53,6 +52,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Vector3 policeCar3InitialPos;
     public GameObject policeCar4;
     [SerializeField] Vector3 policeCar4InitialPos;
+    public ParticleSystem policeCapturePuff;
 
     public void SetGameState(GameState state)
     {
@@ -69,20 +69,20 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        moneyLeftObj = GameObject.FindGameObjectsWithTag("Point");
-        moneyLeft = moneyLeftObj.Length;
-        Debug.Log("Rimangono " + moneyLeft + " banconote");
-
         playerCarInitialPos = playerCar.transform.position;
         policeCar1InitialPos = policeCar1.transform.position;
         policeCar2InitialPos = policeCar2.transform.position;
         policeCar3InitialPos = policeCar3.transform.position;
         policeCar4InitialPos = policeCar4.transform.position;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        moneyLeftObj = GameObject.FindGameObjectsWithTag(Constants.T_MONEY);
+        moneyLeft = moneyLeftObj.Length;
+        moneyLeftObj = GameObject.FindGameObjectsWithTag(Constants.T_POWERUP);
+        Debug.Log("Rimangono " + moneyLeft + " banconote");
 
         //EVENTS
         EventManager.Points += ReceivePoints;
@@ -115,27 +115,35 @@ public class GameManager : MonoBehaviour
     private void HandleArrestedPlayer()
     {
         lives--;
-        livesImgs[lives].SetActive(false);
         if (lives == 0)
         {
             ShowPanelEndGame("Sei stato arrestato");
+            return;
         }
+        livesImgs[lives].SetActive(false);
     }
 
     private void HandlePoliceCaught(GameObject policeCar)
     {
-        if(policeCar == policeCar1)
-            policeCar1.transform.position = policeCar1InitialPos;
+        Vector3 posToUse = new Vector3();
+        if (policeCar == policeCar1)
+            posToUse = policeCar1InitialPos;
         if (policeCar == policeCar2)
-            policeCar2.transform.position = policeCar2InitialPos;
+            posToUse = policeCar2InitialPos;
         if (policeCar == policeCar3)
-            policeCar3.transform.position = policeCar3InitialPos;
+            posToUse = policeCar3InitialPos;
         if (policeCar == policeCar4)
-            policeCar4.transform.position = policeCar4InitialPos;
+            posToUse = policeCar4InitialPos;
+
+        policeCapturePuff.transform.position = posToUse;
+        policeCapturePuff.Play();
+        policeCar.transform.position = posToUse;
     }
 
     private void ShowPanelEndGame(string msg)
     {
+        Destroy(playerCar);
+
         msgEndGame.text = msg;
 
         panelGame.SetActive(false);
@@ -144,29 +152,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        //player stats
-        lives = 3;
-        score = 0;
-
-        //UI
-        scorePoints.text = "0";
-        msgEndGame.text = "";
-        foreach (GameObject img in livesImgs) { img.SetActive(true); }
-
-        //panels
-        panelGame.SetActive(true);
-        panelEndGame.SetActive(false);
-
-        RestorePosition();
-    }
-
-    public void RestorePosition()
-    {
-        playerCar.transform.position = playerCarInitialPos;
-        policeCar1.transform.position = policeCar1InitialPos;
-        policeCar2.transform.position = policeCar2InitialPos;
-        policeCar3.transform.position = policeCar3InitialPos;
-        policeCar4.transform.position = policeCar4InitialPos;
+        SceneManager.LoadScene(Constants.S_1, LoadSceneMode.Single);
     }
 }
 

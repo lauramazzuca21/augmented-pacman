@@ -9,20 +9,21 @@ namespace Assets.Scripts
     public static class Constants {
 
         public static string T_MONEY = "Point";
-        public static string T_CREDITCARD = "PowerUp";
+        public static string T_POWERUP = "PowerUp";
         public static string T_ENEMY = "Enemy";
+        public static string S_1 = "SampleScene 1";
 
         public static Dictionary<string, int> Points = new Dictionary<string, int>
         {
             {T_MONEY, 100 },
-            {T_CREDITCARD, 500 },
+            {T_POWERUP, 500 },
             {T_ENEMY, 800 }
         };
 
         public static Dictionary<string, string> Sounds = new Dictionary<string, string>
         {
             {T_MONEY, "Coin" },
-            {T_CREDITCARD, "ATM" },
+            {T_POWERUP, "ATM" },
             {T_ENEMY, "" }
         };
 
