@@ -32,18 +32,23 @@ public class SoundManager : MonoBehaviour
             {
                 audioSource.clip = audio;
                 audioSource.Play();
+                return;
             }
         }      
     }
 
     private void StartSoundArrested()
     {
+        if (audioSource.isPlaying && audioSource.clip.name == "Police")
+            return;
+
         foreach (AudioClip audio in sounds)
         {
             if (audio.name == "Police")
             {
                 audioSource.clip = audio;
                 audioSource.Play();
+                return;
             }
         }
     }    
