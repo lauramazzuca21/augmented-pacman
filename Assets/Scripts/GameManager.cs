@@ -51,13 +51,9 @@ public class GameManager : MonoBehaviour
     //ref to objs
     public GameObject playerCar;
     public GameObject policeCar1;
-    [SerializeField] Vector3 policeCar1InitialPos;
     public GameObject policeCar2;
-    [SerializeField] Vector3 policeCar2InitialPos;
     public GameObject policeCar3;
-    [SerializeField] Vector3 policeCar3InitialPos;
     public GameObject policeCar4;
-    [SerializeField] Vector3 policeCar4InitialPos;
 
     //particles
     public GameObject policeCapturePuff;
@@ -80,10 +76,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        policeCar1InitialPos = new Vector3(policeCar1.transform.position.x, policeCar1.transform.position.z, policeCar1.transform.position.z);
-        policeCar2InitialPos = new Vector3(policeCar2.transform.position.x, policeCar1.transform.position.z, policeCar1.transform.position.z);
-        policeCar3InitialPos = new Vector3(policeCar3.transform.position.x, policeCar1.transform.position.z, policeCar1.transform.position.z);
-        policeCar4InitialPos = new Vector3(policeCar4.transform.position.x, policeCar1.transform.position.z, policeCar1.transform.position.z);
     }
 
     // Start is called before the first frame update
@@ -102,7 +94,17 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        timerText.text = timer.ToString();
+        int minutes = Mathf.FloorToInt(timer / 60);
+        int seconds = Mathf.RoundToInt(timer % 60);
+        string min = minutes.ToString();
+        string sec = seconds.ToString();
+
+        if (minutes < 10)
+            min = "0" + minutes;
+        if (seconds < 10)
+            sec = "0" + seconds;
+
+        timerText.text = min + ":" + sec;
     }
 
     private void ReceivePoints(GameObject obj, int pts)
@@ -121,11 +123,14 @@ public class GameManager : MonoBehaviour
                 ShowPanelEndGame("You've successfully escaped!");
             }
         }
+        else
+        {
+            StartCoroutine(RestoreItem(obj));
+        }
 
         if (obj.tag != Constants.T_ENEMY)
         {
             obj.SetActive(false);
-            StartCoroutine(RestoreItem(obj));
         }
             
     }
@@ -191,13 +196,6 @@ public class GameManager : MonoBehaviour
         panelEndGame.SetActive(true);        
     }
 
-    private IEnumerator Reload()
-    {
-        yield return new WaitForSeconds(6);
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-        Resources.UnloadUnusedAssets();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
-    }
     public void RestartGame()
     {
         //StartCoroutine(Reload());
