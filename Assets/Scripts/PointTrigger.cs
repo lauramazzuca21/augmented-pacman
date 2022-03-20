@@ -5,13 +5,26 @@ using UnityEngine;
 
 public class PointTrigger : MonoBehaviour
 {
+    public PlayerController playerController;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Inside trigger");
-        int pts;
+        bool getPoints = true;
+        if (other.gameObject.tag == Constants.T_ENEMY)
+        {
+            if (playerController.IsPowerupActive)
+                EventManager.FirePoliceCaughtEvent(other.gameObject);
+            else
+            {
+                EventManager.FireArrestedPlayerEvent();
+                getPoints = false;
+            }
+        }
+
         if (other.gameObject.tag == Constants.T_CREDITCARD)
             EventManager.FirePowerUpBeginEvent(PowerUp.PIMP);
-        if (Constants.Points.TryGetValue(other.gameObject.tag, out pts))
+
+        int pts;
+        if (Constants.Points.TryGetValue(other.gameObject.tag, out pts) && getPoints)
             EventManager.FirePointsEvent(other.gameObject, pts);
 
         string audio;
