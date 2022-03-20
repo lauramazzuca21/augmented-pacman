@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer = timer + Time.deltaTime;
+        timer += Time.deltaTime;
         timerText.text = timer.ToString();
     }
 
@@ -110,14 +110,14 @@ public class GameManager : MonoBehaviour
         score += pts;
         scorePoints.text = score.ToString();
 
-        if(obj.tag == Constants.T_MONEY)
-            moneyLeft--;
+        //if(obj.tag == Constants.T_MONEY)
+        //    moneyLeft--;
 
-        if (moneyLeft == 0)
-        {
-            fireworks.SetActive(true);
-            ShowPanelEndGame("Sei scampato alla cattura");
-        }
+        //if (moneyLeft == 0)
+        //{
+        //    fireworks.SetActive(true);
+        //    ShowPanelEndGame("Sei scampato alla cattura");
+        //}
 
         if (obj.tag != Constants.T_ENEMY)
         {
